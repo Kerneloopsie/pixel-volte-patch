@@ -27,7 +27,7 @@ class BrokerInstrumentation : Instrumentation() {
             val overrideValues = toPersistableBundle(arguments)
 
             try {
-                configurationManager.overrideConfig(subId, overrideValues, true)
+                configurationManager.overrideConfig(subId, overrideValues, false)
             } catch (e: SecurityException) {
                 if (e.message?.contains("overrideConfig with persistent=true only can be invoked by system app") == true) {
                     configurationManager.overrideConfig(subId, overrideValues, false)
@@ -50,7 +50,7 @@ class BrokerInstrumentation : Instrumentation() {
             val configurationManager = this.context.getSystemService(CarrierConfigManager::class.java)
 
             try {
-                configurationManager.overrideConfig(subId, null, true)
+                configurationManager.overrideConfig(subId, null, false)
             } catch (e: SecurityException) {
                 if (e.message?.contains("overrideConfig with persistent=true only can be invoked by system app") == true) {
                     configurationManager.overrideConfig(subId, null, false)
